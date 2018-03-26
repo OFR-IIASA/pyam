@@ -406,6 +406,24 @@ class IamDataFrame(object):
 
             return df
 
+    def manipulate(self, mapping=False, unit_conv=False):
+
+        ret = copy.deepcopy(self)
+        if mapping:
+            for col in mapping:
+                ret.data.loc[:, col] = self.data.loc[:, col].map(
+                    mapping[col], na_action='ignore')
+            ret.data = ret.data.groupby(
+                IAMC_IDX + ['year']).sum().reset_index()
+        if unit_conv:
+            for unt in unit_conv:
+                ret.data.loc[ret.data['unit'] == unt, 'value'] = ret.data.loc[ret.data['unit']
+                                                                              == unt, 'value'] * unit_conv[unt]['conv_fac']
+                ret.data.loc[ret.data['unit'] == unt,
+                             'unit'] = unit_conv[unt]['new_unit']
+
+        return ret
+
     def filter(self, filters, keep=True, inplace=False):
         """Return a filtered IamDataFrame (i.e., a subset of current data)
 
