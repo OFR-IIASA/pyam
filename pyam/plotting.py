@@ -362,7 +362,7 @@ def stack_plot(df, x='year', y='value', stack='variable',
         title = ' '.join(_title) if title is True else title
         ax.set_title(title)
 
-    return ax
+    return(plt, ax)
 
 
 def bar_plot(df, x='year', y='value', bars='variable',

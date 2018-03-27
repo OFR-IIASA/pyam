@@ -582,8 +582,8 @@ class IamDataFrame(object):
         see pyam.plotting.stack_plot() for all available options
         """
         df = self.as_pandas(with_metadata=True)
-        ax = plotting.stack_plot(df, *args, **kwargs)
-        return ax
+        plt, ax = plotting.stack_plot(df, *args, **kwargs)
+        return(plt, ax)
 
     def bar_plot(self, *args, **kwargs):
         """Plot timeseries bars of existing data
