@@ -362,7 +362,7 @@ def stack_plot(df, x='year', y='value', stack='variable',
         title = ' '.join(_title) if title is True else title
         ax.set_title(title)
 
-    return(plt, ax)
+    return plt, ax
 
 
 def bar_plot(df, x='year', y='value', bars='variable',
@@ -450,7 +450,7 @@ def bar_plot(df, x='year', y='value', bars='variable',
         title = ' '.join(_title) if title is True else title
         ax.set_title(title)
 
-    return ax
+    return plt, ax
 
 
 def line_plot(df, x='year', y='value', ax=None, legend=None, title=True,
@@ -563,4 +563,4 @@ def line_plot(df, x='year', y='value', ax=None, legend=None, title=True,
     if title and _title:
         ax.set_title(' '.join(_title))
 
-    return ax, handles, labels
+    return plt, ax, handles, labels

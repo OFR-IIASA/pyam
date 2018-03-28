@@ -573,8 +573,8 @@ class IamDataFrame(object):
             if x != 'year' and y != 'year':
                 df = df.drop('year', axis=1)  # years causes NaNs
 
-        ax, handles, labels = plotting.line_plot(df, x=x, y=y, **kwargs)
-        return ax
+        plt, ax, handles, labels = plotting.line_plot(df, x=x, y=y, **kwargs)
+        return plt, ax
 
     def stack_plot(self, *args, **kwargs):
         """Plot timeseries stacks of existing data
@@ -583,7 +583,7 @@ class IamDataFrame(object):
         """
         df = self.as_pandas(with_metadata=True)
         plt, ax = plotting.stack_plot(df, *args, **kwargs)
-        return(plt, ax)
+        return plt, ax
 
     def bar_plot(self, *args, **kwargs):
         """Plot timeseries bars of existing data
@@ -591,8 +591,8 @@ class IamDataFrame(object):
         see pyam.plotting.bar_plot() for all available options
         """
         df = self.as_pandas(with_metadata=True)
-        ax = plotting.bar_plot(df, *args, **kwargs)
-        return ax
+        plt, ax = plotting.bar_plot(df, *args, **kwargs)
+        return plt, ax
 
     def pie_plot(self, *args, **kwargs):
         """Plot a pie chart
